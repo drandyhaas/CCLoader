@@ -152,6 +152,8 @@ int main(int arg, char *argv[])
     BlkNum = 0;
 
 	printf("Enable transmission...\n");
+	sleep(3);//wait for arduino to possible reset
+
 	unsigned char buf[2] = {SBEGIN, 0};      // Enable transmission,  do not verify
 	if(RS232_SendBuf(com, buf, 2) != 2)
 	{
@@ -237,6 +239,7 @@ void ProcessProgram()
 					RS232_SendBuf(com, buf, 515);
                     BlkNum++;
 					printf("%d  ", BlkNum);
+					fflush(stdout);
                 }
                 break;
             }
